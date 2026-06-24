@@ -3,9 +3,9 @@ let
   inherit (config.flake.modules) nixos;
 in
 {
-  configurations.nixos.xps.module = {
+  configurations.nixos.nixos.module = {
     imports = [
-      ./hardware-configuration.nix
+      ./_hardware.nix
       nixos.base
     ];
 

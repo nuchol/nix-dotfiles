@@ -3,7 +3,11 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
     import-tree.url = "github:vic/import-tree";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -23,19 +27,4 @@
         (inputs.import-tree ./modules)
       ];
     };
-
-    # nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-    #   system = "x86_64-linux";
-    #   modules = [
-    #     ./configuration.nix
-    #     home-manager.nixosModules.home-manager {
-    #       home-manager = {
-    #         useGlobalPkgs = true;
-    #         useUserPackages = true;
-    #         users.nick = import ./home.nix;
-    #         backupFileExtension = "backup";
-    #       };
-    #     }
-    #   ];
-    # };
 }

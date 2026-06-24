@@ -12,7 +12,7 @@ let
   ];
 in
 {
-  flake.modules.nixos.base = {
+  flake.modules.nixos.base = {pkgs, ... }: {
     imports = commonImports ++ [
       nixos.audio
       nixos.boot
@@ -21,6 +21,14 @@ in
       nixos.users
       # nixos.zsh
     ];
+
+    environment.systemPackages = with pkgs; [
+      neovim
+      wget
+      git
+      brave
+    ];
+
     home-manager.sharedModules = [ homeManager.base ];
   };
 
@@ -30,11 +38,4 @@ in
       homeManager.fonts
     ];
   };
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    git
-    brave
-  ];
 }
