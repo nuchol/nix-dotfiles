@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   inherit (config.flake.modules)
     generic
@@ -27,6 +27,14 @@ in
   flake.modules.homeManager.base = {
     imports = [
       generic.profile
+      homeManager.fonts
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    git
+    brave
+  ];
 }
