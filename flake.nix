@@ -14,15 +14,12 @@
     };
   };
 
-  outputs = { home-manager, nixpkgs, ... } @ inputs:
+  outputs = { home-manager, ... } @ inputs:
     let
-      system = "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-      lib = nixpkgs.lib;
-
       mkSystem = pkgs: system: hostname:
         pkgs.lib.nixosSystem {
           system = system;
+
           modules = [
             { networking.hostName = hostname; }
             (./. + "/hosts/${hostname}/system.nix")
@@ -34,6 +31,7 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 extraSpecialArgs = { inherit inputs; };
+
                 users.nick = (./. + "/hosts/${hostname}/user.nix");
               };
             }
@@ -49,6 +47,4 @@
         # laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
       };
   };
-# /home/nick/nixos-dotfiles/modules/hosts/nixos-desktop/hardware-configuration.nix
-# /home/nick/nixos-dotfiles/hosts/nixos-desktop/hardware-configuration.nix
 }

@@ -1,0 +1,138 @@
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+# From mocha https://catppuccin.com/palette
+[palette]
+    rosewater = "#f5e0dc"
+	flamingo = "#f2cdcd"
+	pink = "#f5c2e7"
+	mauve = "#cba6f7"
+	red = "#f38ba8"
+	maroon = "#eba0ac"
+	peach = "#fab387"
+	yellow = "#f9e2af"
+	green = "#a6e3a1"
+	teal = "#94e2d5"
+	sky = "#89dceb"
+	sapphire = "#74c7ec"
+	blue = "#89b4fa"
+	lavender = "#b4befe"
+	text = "#cdd6f4"
+	subtext1 = "#bac2de"
+	subtext0 = "#a6adc8"
+	overlay2 = "#9399b2"
+	overlay1 = "#7f849c"
+	overlay0 = "#6c7086"
+	surface2 = "#585b70"
+	surface1 = "#45475a"
+	surface0 = "#313244"
+	base = "#1e1e2e"
+	mantle = "#181825"
+	crust = "#11111b"
+
+# ----- Path Display -----
+[[blocks]]
+    type = 'prompt'
+    alignment = 'left'
+    newline = true
+
+    [[blocks.segments]]
+        type = 'os'
+        style = 'diamond'
+        leading_diamond = ''
+        trailing_diamond = ''
+        foreground = 'p:base'
+        background = 'p:blue'
+        template = '{{.Icon}}'
+
+    [[blocks.segments]]
+        type = 'session'
+        style = 'diamond'
+        leading_diamond = ''
+        trailing_diamond = ''
+        foreground = 'p:base'
+        background = 'p:blue'
+        template = ' {{ if .SSHSession }}  {{ end }}{{ .UserName }}@{{ .HostName }}'
+
+    [[blocks.segments]]
+        type = 'path'
+        style = 'diamond'
+        leading_diamond = ''
+        trailing_diamond = ''
+        foreground = 'p:base'
+        background = 'p:pink'
+        template = ' {{ .Path }}'
+
+        [blocks.segments.properties]
+            style = 'full'
+
+    [[blocks.segments]]
+        type = 'git'
+        style = 'diamond'
+        leading_diamond = ''
+        trailing_diamond = ''
+        foreground = 'p:base'
+        background = 'p:yellow'
+
+    [[blocks.segments]]
+        type = "python"
+        style = "plain"
+        foreground = "p:green"
+        template = "  ({{ .Venv }}) "
+        background = 'transparent'
+
+
+# ----- Time and Execution Time -----
+[[blocks]]
+    type = 'rprompt'
+    alignment = 'right'
+    
+    [[blocks.segments]]
+        type = 'executiontime'
+        style = 'diamond'
+        leading_diamond = ''
+        trailing_diamond = ''
+        foreground = 'p:base'
+        background = 'p:red'
+        template = '{{ .FormattedMs }}'
+
+    #[[blocks.segments]]
+    #    type = 'time'
+    #    style = 'diamond'
+    #    leading_diamond = ''
+    #    trailing_diamond = ''
+    #    foreground = 'p:base'
+    #    background = 'p:red'
+
+# ----- Command Prompt -----
+[[blocks]]
+    type = 'prompt'
+    alignment = 'left'
+    newline = true
+
+    [[blocks.segments]]
+        type = 'text'
+        style = 'plain'
+        foreground_templates = [ 
+            '{{if gt .Code 0}}p:red{{end}}',
+            '{{if eq .Code 0}}p:mauve{{end}}',
+        ]
+        background = 'transparent'
+        template = '❯'
+
+[transient_prompt]
+    foreground_templates = [ 
+        '{{if gt .Code 0}}p:red{{end}}',
+        '{{if eq .Code 0}}p:mauve{{end}}',
+    ]
+    background = 'transparent'
+    template = '❯ '
+
+[secondary_prompt]
+    foreground_templates = [ 
+        '{{if gt .Code 0}}p:red{{end}}',
+        '{{if eq .Code 0}}p:mauve{{end}}',
+    ]
+    background = 'transparent'
+    template = '❯❯ '

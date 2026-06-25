@@ -1,16 +1,28 @@
 { config, lib, inputs, pkgs, ...}:
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
+  programs = ../../modules/programs;
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   configs = {
     nvim = "nvim";
+    oh-my-posh = "oh-my-posh";
   };
 in 
 {
+  imports = [
+    (programs + /zsh.nix)
+    (programs + /oh-my-posh.nix)
+  ];
+
+  modules = {
+    zsh.enable = true;
+    oh-my-posh.enable = true;
+  };
+
   home.username = "nick";
   home.homeDirectory = "/home/nick";
   home.stateVersion = "26.05";
-  # programs.bash.enable = true;
+  home.enableNixpkgsReleaseCheck = false;
 
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dotfiles}/${subpath}/";
@@ -23,7 +35,6 @@ in
     ripgrep
     nodejs
     gcc
-    zsh
     brave
 
     discord
@@ -51,24 +62,3 @@ in
     };
   };
 }
-
-# config.modules = {
-#   # gui
-#   firefox.enable = true;
-#   foot.enable = true;
-#   eww.enable = true;
-#   dunst.enable = true;
-#   hyprland.enable = true;
-#   wofi.enable = true;
-#
-#   # cli
-#   nvim.enable = true;
-#   zsh.enable = true;
-#   git.enable = true;
-#   gpg.enable = true;
-#   direnv.enable = true;
-#
-#   # system
-#   xdg.enable = true;
-#   packages.enable = true;
-# };
