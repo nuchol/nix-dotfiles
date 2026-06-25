@@ -2,12 +2,6 @@
   description = "NixOS flake";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # import-tree.url = "github:vic/import-tree";
-    #
-    # flake-parts = {
-    #   url = "github:hercules-ci/flake-parts";
-    #   inputs.nixpkgs-lib.follows = "nixpkgs";
-    # };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -31,7 +25,7 @@
           system = system;
           modules = [
             { networking.hostName = hostname; }
-            ./modules/base.nix
+            (./. + "/hosts/${hostname}/system.nix")
             (./. + "/hosts/${hostname}/hardware-configuration.nix")
 
             home-manager.nixosModules.home-manager
@@ -51,7 +45,7 @@
       nixosConfigurations = {
         # Now, defining a new system is can be done in one line
         #                                Architecture   Hostname
-        desktop = mkSystem inputs.nixpkgs "x86_64-linux" "nixos-desktop";
+        desktop = mkSystem inputs.nixpkgs "x86_64-linux" "nixos";
         # laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
       };
   };

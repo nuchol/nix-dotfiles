@@ -7,10 +7,6 @@ let
   };
 in 
 {
-  imports = [
-    # ../../modules/base.nix
-  ];
-
   home.username = "nick";
   home.homeDirectory = "/home/nick";
   home.stateVersion = "26.05";
@@ -28,6 +24,7 @@ in
     nodejs
     gcc
     zsh
+    brave
 
     discord
 

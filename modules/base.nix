@@ -6,17 +6,6 @@
 
   programs.zsh.enable = true;
 
-  # Nvidia drivers
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia.open = false;
-  hardware.nvidia.modesetting.enable = true;
-
-  services.printing.enable = true;
-
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
   # Install fonts
   fonts = {
     packages = with pkgs; [
@@ -85,14 +74,6 @@
     LC_PAPER = "en_AU.UTF-8";
     LC_TELEPHONE = "en_AU.UTF-8";
     LC_TIME = "en_AU.UTF-8";
-  };
-
-  # Users
-  users.users."nick" = {
-    isNormalUser = true;
-    description = "Nick";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
   };
 
   # Networking
