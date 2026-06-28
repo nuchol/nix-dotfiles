@@ -11,7 +11,6 @@ in {
     programs.oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      useTheme = "attomic";
       configFile = "${config.home.homeDirectory}/nixos-dotfiles/config/oh-my-posh/theme.toml";
     };
   };

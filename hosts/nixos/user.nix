@@ -38,6 +38,7 @@ in
     brave
 
     discord
+    fastfetch
 
     # Formatters
     stylua
