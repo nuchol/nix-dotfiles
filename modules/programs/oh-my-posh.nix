@@ -4,8 +4,8 @@ let cfg = config.modules.oh-my-posh;
 in {
   options.modules.oh-my-posh = { enable = mkEnableOption "oh-my-posh"; };
   config = mkIf cfg.enable {
-    home.packages = [
-      pkgs.oh-my-posh
+    home.packages = with pkgs; [
+      oh-my-posh
     ];
 
     programs.oh-my-posh = {

@@ -31,6 +31,7 @@
                 useUserPackages = true;
                 useGlobalPkgs = true;
                 extraSpecialArgs = { inherit inputs; };
+                backupFileExtension = "backup";
 
                 users.nick = (./. + "/hosts/${hostname}/user.nix");
               };

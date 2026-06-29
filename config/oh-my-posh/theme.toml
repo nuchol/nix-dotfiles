@@ -41,19 +41,10 @@ final_space = true
         type = 'os'
         style = 'diamond'
         leading_diamond = ''
-        trailing_diamond = ''
-        foreground = 'p:base'
-        background = 'p:blue'
-        template = '{{.Icon}}'
-
-    [[blocks.segments]]
-        type = 'session'
-        style = 'diamond'
-        leading_diamond = ''
         trailing_diamond = ''
         foreground = 'p:base'
         background = 'p:blue'
-        template = ' {{ if .SSHSession }}  {{ end }}{{ .UserName }}@{{ .HostName }}'
+        template = '{{.Icon}} '
 
     [[blocks.segments]]
         type = 'path'

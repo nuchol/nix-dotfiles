@@ -12,11 +12,13 @@ in
   imports = [
     (programs + /zsh.nix)
     (programs + /oh-my-posh.nix)
+    (programs + /git.nix)
   ];
 
   modules = {
     zsh.enable = true;
     oh-my-posh.enable = true;
+    git.enable = true;
   };
 
   home.username = "nick";
@@ -52,14 +54,4 @@ in
     rust-analyzer
     nixd
   ];
-
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = "Nicholas Hollister";
-        email = "nicholas.hollister@gmail.com";
-      };
-    };
-  };
 }
