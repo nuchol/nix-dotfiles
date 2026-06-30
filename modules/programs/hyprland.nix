@@ -6,14 +6,11 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       hyprland
-      hyprpaper
+      awww
       wl-clipboard
       wofi
     ];
 
-    programs.hyprpaper = {
-      enable = true;
-      xwayland.enable = true;
-    };
+    # wayland.windowManager.hyprland.enable = true;
   };
 }

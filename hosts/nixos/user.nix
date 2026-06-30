@@ -6,6 +6,7 @@ let
   configs = {
     nvim = "nvim";
     oh-my-posh = "oh-my-posh";
+    hypr = "hypr";
   };
 in 
 {
@@ -13,12 +14,14 @@ in
     (programs + /zsh.nix)
     (programs + /oh-my-posh.nix)
     (programs + /git.nix)
+    (programs + /hyprland.nix)
   ];
 
   modules = {
     zsh.enable = true;
     oh-my-posh.enable = true;
     git.enable = true;
+    hyprland.enable = true;
   };
 
   home.username = "nick";
@@ -33,6 +36,7 @@ in
   
   home.packages = with pkgs; [
     alacritty
+    kitty
     neovim
     ripgrep
     nodejs
@@ -41,6 +45,7 @@ in
 
     discord
     fastfetch
+    steam
 
     # Formatters
     stylua

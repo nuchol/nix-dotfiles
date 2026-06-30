@@ -22,4 +22,5 @@
 
   services.displayManager.ly.enable = true;
   services.desktopManager.gnome.enable = true;
+  programs.hyprland.enable = true;
 }
