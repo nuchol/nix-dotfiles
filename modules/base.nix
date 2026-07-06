@@ -16,9 +16,10 @@
 
     fontconfig = {
       hinting.autohint = true;
+      enable = true;
       defaultFonts = {
         sansSerif = [ "Roboto" ];
-        monospace = ["Jetbrains Mono"];
+        monospace = [ "JetBrainsMono" ];
         emoji = [ "OpenMoji Color" ];
       };
     };

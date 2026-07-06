@@ -7,10 +7,11 @@ in {
     home.packages = with pkgs; [
       hyprland
       awww
-      wl-clipboard
+      eww
       wofi
-    ];
+      dunst
 
-    # wayland.windowManager.hyprland.enable = true;
+      wl-clipboard
+    ];
   };
 }

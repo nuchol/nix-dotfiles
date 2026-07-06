@@ -1,0 +1,225 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                    Workspaces                  ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(deflisten workspaces_data
+  :initial '[{"id":1,"state":"empty"}]'
+  "sh ~/.config/eww/bar/scripts/workspace.sh")
+
+(defwidget widget_workspaces []
+  (box :class "ws-container"
+       :orientation "horizontal"
+       :space-evenly false
+       :spacing 10
+       :valign "center"
+       (for ws in {workspaces_data}
+            (eventbox :cursor "pointer"
+                      (button :class "ws ${ws.state}"
+                              :onclick "hyprctl dispatch 'hl.dsp.focus({ workspace = \"${ws.id}\" })'")
+                      )
+            )
+       )
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                      Audio                     ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(deflisten volume_mic_state
+  :initial '{"audio": "unmuted", "mic": "unmuted"}'
+  "sh ~/.config/eww/bar/scripts/audio.sh")
+
+(defwidget widget_audio []
+  (box :class "audio-box"
+       :orientation "horizontal"
+       (label :class "audio-icon ${volume_mic_state.audio}"
+              :text {volume_mic_state.audio == "muted" ? "" : ""}))
+)
+
+(defwidget widget_mic []
+  (box :class "mic-box"
+       :orientation "horizontal"
+       (label :class "mic-icon ${volume_mic_state.mic}"
+              :text {volume_mic_state.mic == "muted" ? "" : ""}))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                 Notifications                  ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defpoll notif_state :interval "2s"
+  :initial '{"icon": "󰂚", "class": "empty", "count": 0}'
+  "sh ~/.config/eww/bar/scripts/notifications.sh")
+
+(defwidget widget_notification []
+  (eventbox :cursor "pointer"
+    (box :class "notif-box ${notif_state.class}"
+         :hexpand false
+         :space-evenly false
+         :tooltip "${notif_state.count} Notifications"
+         :halign "start"
+         :width 20
+         (button :onclick "dunstctl history-pop"
+                 :onrightclick "dunstctl history-clear && dunstctl close-all"
+                 (label :text {notif_state.icon}))
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                    Network                     ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(deflisten network_data
+  :initial '{"status": "disconnected", "ssid": "Off", "signal": 0, "icon": "󰤮"}'
+  "sh ~/.config/eww/bar/scripts/network.sh")
+
+(defwidget widget_network []
+  (box :class "network-container ${network_data.status == 'disconnected' ? 'is-off' :
+       network_data.status == 'not-connected' ? 'wifi-low' : 'is-on'}"
+       :orientation "horizontal"
+       :space-evenly false
+       :tooltip "${network_data.status == 'disconnected' ? 'Disconnected' :
+       network_data.status == 'not-connected' ? 'Wi-Fi On (Not Connected)' :
+       network_data.ssid == 'Ethernet' ? 'Ethernet Connection' :
+       '${network_data.ssid} (${network_data.signal}%)'}"
+
+       (label :class "network-icon"
+              :text "${network_data.icon}")
+       )
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;                    Battery                     ;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  (defpoll battery_data :interval "2s"
+;;    :initial '{"icon":"󰁹","percent":100,"status":"Unknown","time":"--:--"}'
+;;    "bash ~/.config/eww/bar/scripts/battery.sh")
+
+;;  (defwidget widget_battery []
+;;    (box :class "battery-container ${
+;;         battery_data.status == 'AC' ? 'ac' :
+;;         battery_data.status == 'Charging' ? 'charging' :
+;;         battery_data.percent < 11 ? 'critical' :
+;;         battery_data.percent < 26 ? 'low' :
+;;         battery_data.percent < 41 ? 'warning-low' :
+;;         battery_data.percent < 61 ? 'warning-high' :
+;;         battery_data.percent < 81 ? 'good' :
+;;         battery_data.percent < 91 ? 'high' :
+;;         'full'
+;;         }"
+    
+;;         :orientation "horizontal"
+;;         :space-evenly false
+
+;;         :tooltip "${battery_data.percent}% • ${
+;;         battery_data.status == 'Charging'
+;;         ? 'Charging'
+;;         : battery_data.status == 'Full'
+;;         ? 'Full'
+;;         : battery_data.time
+;;         }"
+
+;;         (label :class "battery-icon"
+;;                :text "${battery_data.icon}")
+
+;;         (label :class "battery-percent"
+;;                :text "${battery_data.percent}%")
+;;         )
+;;    )
+
+;; (defwidget widget_power []
+;;    (eventbox :onhover "${EWW_CMD} update power=true" 
+;;              :onhoverlost "${EWW_CMD} update power=false" 
+;;    (box      :orientation "h"
+;;              :space-evenly "false"
+;;              :vexpand "false"
+;;              :class "powermenu"
+;;    (revealer :transition "slideright"
+;;              :reveal widget_power
+;;              :duration "550ms"
+;;    (box      :orientation "h"
+;;              :space-evenly "false"
+
+;;    (button   :class "button-bspres"
+;;              :tooltip "BSPWM Restart"
+;;              :onclick "bspc wm -r" "" )
+
+;;    (button   :class "button-reb"
+;;              :tooltip "Reboot"
+;;              :onclick "reboot"   "")
+
+;;    (button   :class "button-quit"
+;;              :tooltip "Logout"
+;;              :onclick "killall bspwm" "")
+
+;;    (button   :class "button-lock"
+;;              :tooltip "Lock Screen"
+;;              :onclick "betterlockscreen -l"  "")))
+
+;;    (button   :class "button-off"
+;;              :tooltip "Shutdown"
+;;              :onclick "shutdown now" ""))))
+;;  (defvar widget_power false)
+
+(defwidget widget_bar []
+  (centerbox :class "bar"
+             :orientation "horizontal"
+             :valign "center"
+             :vexpand false
+
+             ;; LEFT
+             (box :class "left-container"
+                  :orientation "horizontal"
+                  :space-evenly false
+                  :spacing 4
+                  :halign "start"
+                  (eventbox :cursor "pointer"
+                            (button :class "bar-nix-trigger"
+                                    :width 50
+                                    :onclick "${EWW_CMD} open --toggle window_dashboard"
+                                    :style "background: none; box-shadow: none; width: 100px;"
+                                    (label :class "nix-icon"
+                                           :valign "center"
+                                           :text "")
+                                    )
+                            )
+
+                  (box :orientation "horizontal"
+                       :space-evenly false
+                       :spacing 10
+                       (widget_workspaces)
+                       (systray :class "stray"
+                                :orientation "horizontal"
+                                :spacing 12
+                                :icon-size 18))
+                  )
+
+             ;; CENTER
+             (box :class "center-container"
+                  :halign "center"
+                  (label :class "time"
+                         :text {formattime(EWW_TIME, "%I:%M %p")})
+                  )
+
+             ;; RIGHT
+             (box :orientation "horizontal"
+                  :halign "end"
+                  :space-evenly false
+                  (box :class "right-container"
+                       :orientation "horizontal"
+                       :spacing 12
+                       :space-evenly false
+
+                       (widget_mic)
+                       (widget_audio)
+                       (widget_network)
+                       ;; (widget_battery)
+                       (label :class "sep"
+                              :text "|")
+                       (widget_notification)
+                       (eventbox :cursor "pointer"
+                                 (button :class "panel-trigger"
+                                         :onclick "${EWW_CMD} open --toggle window_panel"
+                                         :style "background: none; box-shadow: none;"
+                                         (label :text "󱁛"))))
+                       ;; (widget_power)
+                  )
+             )
+  )

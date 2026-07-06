@@ -7,6 +7,7 @@ let
     nvim = "nvim";
     oh-my-posh = "oh-my-posh";
     hypr = "hypr";
+    eww = "eww";
   };
 in 
 {
@@ -35,14 +36,14 @@ in
   }) configs;
   
   home.packages = with pkgs; [
-    alacritty
     kitty
     neovim
     ripgrep
     nodejs
     gcc
-    brave
+    socat jq pulseaudio
 
+    brave
     discord
     fastfetch
     steam
@@ -59,4 +60,26 @@ in
     rust-analyzer
     nixd
   ];
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.kdePackages.breeze;
+    name = "Breeze_Surfaces";
+    size = 24;
+  };
+
+  home.sessionVariables = {
+    XCURSOR_THEME = "Breeze_Surfaces";
+    HYPRCURSOR_THEME = "Breeze_Surfaces";
+  };
+
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 10;
+    };
+    themeFile = "Catppuccin-Mocha";
+  };
 }
