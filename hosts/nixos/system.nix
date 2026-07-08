@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../../modules/base.nix
@@ -12,6 +12,8 @@
     shell = pkgs.zsh;
   };
 
+  boot.kernelParams = [ "video=DP-2:e" "video=HDMI-A-1:d" ];
+
   # Nvidia drivers
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
@@ -21,6 +23,5 @@
   services.printing.enable = true;
 
   services.displayManager.ly.enable = true;
-  services.desktopManager.gnome.enable = true;
   programs.hyprland.enable = true;
 }

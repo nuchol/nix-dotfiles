@@ -16,6 +16,8 @@ in
     (programs + /oh-my-posh.nix)
     (programs + /git.nix)
     (programs + /hyprland.nix)
+    (programs + /nvim.nix)
+    (programs + /kitty.nix)
   ];
 
   modules = {
@@ -23,6 +25,8 @@ in
     oh-my-posh.enable = true;
     git.enable = true;
     hyprland.enable = true;
+    nvim.enable = true;
+    kitty.enable = true;
   };
 
   home.username = "nick";
@@ -36,9 +40,6 @@ in
   }) configs;
   
   home.packages = with pkgs; [
-    kitty
-    neovim
-    ripgrep
     nodejs
     gcc
     socat jq pulseaudio
@@ -47,18 +48,6 @@ in
     discord
     fastfetch
     steam
-
-    # Formatters
-    stylua
-    shfmt
-
-    # LSP servers
-    lua-language-server
-    clang-tools
-    typescript-language-server
-    tinymist
-    rust-analyzer
-    nixd
   ];
 
   home.pointerCursor = {
@@ -74,12 +63,4 @@ in
     HYPRCURSOR_THEME = "Breeze_Surfaces";
   };
 
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = "JetBrainsMono Nerd Font";
-      size = 10;
-    };
-    themeFile = "Catppuccin-Mocha";
-  };
 }

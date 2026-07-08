@@ -5,8 +5,8 @@ in {
   options.modules.zsh = { enable = mkEnableOption "zsh"; };
 
   config = mkIf cfg.enable {
-    home.packages = [
-      pkgs.zsh
+    home.packages = with pkgs; [
+      zsh
     ];
 
     programs.zsh = {

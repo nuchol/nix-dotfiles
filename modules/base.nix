@@ -6,6 +6,11 @@
 
   programs.zsh.enable = true;
 
+  environment.systemPackages = with pkgs; [ 
+    zsh git kitty
+    nautilus
+  ];
+
   # Install fonts
   fonts = {
     packages = with pkgs; [

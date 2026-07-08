@@ -5,7 +5,7 @@ in {
   options.modules.git = { enable = mkEnableOption "git"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      oh-my-posh
+      git
     ];
 
     programs.git = {

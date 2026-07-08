@@ -8,6 +8,7 @@ in {
       hyprland
       awww
       eww
+      quickshell
       wofi
       dunst
 
