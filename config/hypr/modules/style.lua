@@ -1,4 +1,5 @@
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+local theme = require("theme")
 hl.config({
     general = {
         gaps_in  = 2,
@@ -7,8 +8,8 @@ hl.config({
         border_size = 2;
 
         col = {
-            active_border = { colors = {"rgba(33ccffee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border = theme.mauve,
+            inactive_border = theme.surface0,
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -25,7 +26,7 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 15,
+        rounding = 10,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
@@ -49,7 +50,6 @@ hl.config({
     },
 
     cursor = {
-        no_hardware_cursors = 1;
-        -- enable_hyprcursor = false;
+        enable_hyprcursor = true;
     },
 })

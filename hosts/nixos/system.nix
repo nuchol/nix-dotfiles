@@ -12,7 +12,7 @@
     shell = pkgs.zsh;
   };
 
-  boot.kernelParams = [ "video=DP-2:e" "video=HDMI-A-1:d" ];
+  # boot.kernelParams = [ "video=DP-2:e" "video=HDMI-A-1:d" ];
 
   # Nvidia drivers
   hardware.graphics.enable = true;

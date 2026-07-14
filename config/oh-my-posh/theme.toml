@@ -1,5 +1,6 @@
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
 version = 3
+padding = 20
 final_space = true
 
 # From mocha https://catppuccin.com/palette

@@ -7,6 +7,7 @@ in {
     home.packages = with pkgs; [
       neovim
       ripgrep
+      tree-sitter
 
       # Formatters
       stylua
@@ -18,6 +19,7 @@ in {
       typescript-language-server
       tinymist
       rust-analyzer
+      pyright
       nixd
     ];
   };

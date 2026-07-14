@@ -12,6 +12,7 @@ let
 in 
 {
   imports = [
+    (programs + /languages.nix)
     (programs + /zsh.nix)
     (programs + /oh-my-posh.nix)
     (programs + /git.nix)
@@ -38,16 +39,20 @@ in
     source = create_symlink "${dotfiles}/${subpath}/";
     recursive = true;
   }) configs;
+
+  services.playerctld.enable = true;
   
   home.packages = with pkgs; [
-    nodejs
-    gcc
     socat jq pulseaudio
 
     brave
     discord
     fastfetch
     steam
+    spotify
+
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.otter-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   home.pointerCursor = {

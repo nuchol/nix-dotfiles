@@ -28,7 +28,10 @@ in {
 
       # .zshrc
       initContent = ''
+        bindkey '^[[Z' autosuggest-accept
         
+        _SSHFS_ZID=z5692989
+        _SSHFS_CSE_MOUNT="$HOME/cse"
       '';
     };
   };
