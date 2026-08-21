@@ -63,14 +63,14 @@ hl.on("config.reloaded", function()
 end)
 
 -- TODO
-hl.on("window.fullscreen", function(w)
-    if w.class ~= "kitty" then return end
-
-    local opacity = w.fullscreen == 2 and 1.0 or 0.8
-    local cmd = string.format(
-        [[sh -c 'for s in /tmp/kitty-*; do kitten @ --to unix:"$s" set-background-opacity --match state:focused %s 2>/dev/null; done']],
-        opacity
-    )
-
-    hl.exec_cmd(cmd)
-end)
+-- hl.on("window.fullscreen", function(w)
+--     if w.class ~= "kitty" then return end
+--
+--     local opacity = w.fullscreen == 2 and 1.0 or 0.8
+--     local cmd = string.format(
+--         [[sh -c 'for s in /tmp/kitty-*; do kitten @ --to unix:"$s" set-background-opacity --match state:focused %s 2>/dev/null; done']],
+--         opacity
+--     )
+--
+--     hl.exec_cmd(cmd)
+-- end)

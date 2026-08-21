@@ -7,7 +7,11 @@ in {
     home.packages = with pkgs; [
       nodejs
       gcc
-      python3
+      rustc cargo
+
+      (python3.withPackages (ps: with ps; [
+        numpy pandas scipy matplotlib
+      ]))
     ];
   };
 }

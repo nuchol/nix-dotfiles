@@ -6,6 +6,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       hyprland
+      hyprshot
       awww
       eww
       quickshell

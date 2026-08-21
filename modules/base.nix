@@ -1,14 +1,14 @@
 { config, pkgs, inputs, ... }:
 {
   # Remove unecessary preinstalled packages
-  environment.defaultPackages = [ ];
+  # environment.defaultPackages = [ ];
   services.xserver.desktopManager.xterm.enable = false;
 
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [ 
     zsh git kitty
-    nautilus
+    limine-full sbctl
   ];
 
   # Install fonts
@@ -46,13 +46,28 @@
 
   # Boot
   boot.loader = {
-    grub = {
+    # grub = {
+    #   enable = true;
+    #   device = "nodev";
+    #   efiSupport = true;
+    #   useOSProber = true;
+    # };
+
+    limine = {
       enable = true;
-      device = "nodev";
-      efiSupport = true;
-      useOSProber = true;
+      secureBoot.enable = true;
+      enrollConfig = true;
+      panicOnChecksumMismatch = true;
+      maxGenerations = 10;
+
+      extraEntries = ''
+        /Windows 11
+        protocol: efi
+        path: guid(a787a037-e7b6-49a2-bc11-059d1440add1):/EFI/Microsoft/Boot/bootmgfw.efi
+      '';
     };
 
+    systemd-boot.enable = false;
     efi.canTouchEfiVariables = true;
   };
 

@@ -104,7 +104,7 @@
 ;;         battery_data.percent < 91 ? 'high' :
 ;;         'full'
 ;;         }"
-    
+
 ;;         :orientation "horizontal"
 ;;         :space-evenly false
 
@@ -168,19 +168,24 @@
              (box :class "left-container"
                   :orientation "horizontal"
                   :space-evenly false
-                  :spacing 4
+                  :spacing 7
                   :halign "start"
                   (eventbox :cursor "pointer"
                             (button :class "bar-nix-trigger"
-                                    :width 50
                                     :onclick "${EWW_CMD} open --toggle window_dashboard"
-                                    :style "background: none; box-shadow: none; width: 100px;"
                                     (label :class "nix-icon"
-                                           :valign "center"
-                                           :text "")
+                                           :text " "
                                     )
                             )
+                  )
+                  (label :class "time"
+                         :text {formattime(EWW_TIME, "%I:%M %p")}
+                  )
+             )
 
+             ;; CENTER
+             (box :class "center-container"
+                  :halign "center"
                   (box :orientation "horizontal"
                        :space-evenly false
                        :spacing 10
@@ -188,29 +193,22 @@
                        (systray :class "stray"
                                 :orientation "horizontal"
                                 :spacing 12
-                                :icon-size 18))
+                                :icon-size 12)
                   )
-
-             ;; CENTER
-             (box :class "center-container"
-                  :halign "center"
-                  (label :class "time"
-                         :text {formattime(EWW_TIME, "%I:%M %p")})
-                  )
+             )
 
              ;; RIGHT
              (box :orientation "horizontal"
                   :halign "end"
                   :space-evenly false
                   (box :class "right-container"
+                       :style "background-color: red"
                        :orientation "horizontal"
                        :spacing 12
                        :space-evenly false
-
                        (widget_mic)
                        (widget_audio)
                        (widget_network)
-                       ;; (widget_battery)
                        (label :class "sep"
                               :text "|")
                        (widget_notification)
@@ -218,8 +216,10 @@
                                  (button :class "panel-trigger"
                                          :onclick "${EWW_CMD} open --toggle window_panel"
                                          :style "background: none; box-shadow: none;"
-                                         (label :text "󱁛"))))
-                       ;; (widget_power)
+                                         (label :text "󱁛")
+                                 )
+                       )
                   )
              )
   )
+)

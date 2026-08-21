@@ -1,19 +1,18 @@
 @import "../../theme/catppuccin.scss";
 
 .ws-container {
-  background-color: rgba($mantle, 0.9);
+  background-color: $mantle;
   padding: 8px;
-  border-radius: $rad;
+  border-radius: 99px;
 
   .ws {
     border-radius: 99px;
-    padding: 0;
-    min-height: 14px;
-    min-width: 14px;
+    min-height: 12px;
+    min-width: 12px;
 
     &.active {
-      min-width: 38px;
-      background-image: linear-gradient(to right, $blue, $sapphire);
+      min-width: 20px;
+      background-color: $blue;
     }
 
     &.occupied {
@@ -28,8 +27,12 @@
       background-color: rgba($surface1, 0.95);
     }
 
+    &.active:hover {
+      background-color: $blue;
+    }
+
     &:hover {
-      background-color: rgba($blue, 0.8);
+      background-color: rgba($blue, 0.5);
     }
   }
 }

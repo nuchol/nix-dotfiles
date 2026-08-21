@@ -74,6 +74,13 @@ final_space = true
         template = "  ({{ .Venv }}) "
         background = 'transparent'
 
+    [[blocks.segments]]
+        type = "nix-shell"
+        style = "plain"
+        foreground = "p:green"
+        template = " 󱄅 ({{ .Type }}) "
+        background = 'transparent'
+
 
 # ----- Time and Execution Time -----
 [[blocks]]
@@ -88,14 +95,6 @@ final_space = true
         foreground = 'p:base'
         background = 'p:red'
         template = '{{ .FormattedMs }}'
-
-    #[[blocks.segments]]
-    #    type = 'time'
-    #    style = 'diamond'
-    #    leading_diamond = ''
-    #    trailing_diamond = ''
-    #    foreground = 'p:base'
-    #    background = 'p:red'
 
 # ----- Command Prompt -----
 [[blocks]]

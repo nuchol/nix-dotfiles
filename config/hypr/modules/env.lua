@@ -5,6 +5,7 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("XCURSOR_THEME", "breeze_cursors")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "breeze_cursors")
+hl.env("HYPRSHOT_DIR", "/home/nick/Pictures/Screenshots")
 
 -- Toolkit Backend --
 hl.env("GDK_BACKEND", "wayland,x11,*")

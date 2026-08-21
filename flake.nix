@@ -17,6 +17,10 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    prismlauncher = {
+      url = "github:PrismLauncher/PrismLauncher";
+    };
   };
 
   outputs = { home-manager, ... } @ inputs:
@@ -48,7 +52,7 @@
     in {
       nixosConfigurations = {
         # Now, defining a new system is can be done in one line
-        #                                Architecture   Hostname
+        #                                  Architecture   Hostname
         desktop = mkSystem inputs.nixpkgs "x86_64-linux" "nixos";
         # laptop = mkSystem inputs.nixpkgs "x86_64-linux" "laptop";
       };

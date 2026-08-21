@@ -13,10 +13,10 @@ in {
       themeFile = "Catppuccin-Mocha";
 
       settings = {
-        background_opacity = 0.8;
-        dynamic_background_opacity = true;
-        listen_on = "unix:/tmp/kitty-{kitty_pid}";
-        allow_remote_control = true;
+        background_opacity = 1;
+        # dynamic_background_opacity = true;
+        # listen_on = "unix:/tmp/kitty-{kitty_pid}";
+        # allow_remote_control = true;
       };
     };
   };

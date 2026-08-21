@@ -2,14 +2,14 @@
 local theme = require("theme")
 hl.config({
     general = {
-        gaps_in  = 2,
-        gaps_out = 10,
+        gaps_in  = 0,
+        gaps_out = 0,
 
         border_size = 2;
 
         col = {
-            active_border = theme.mauve,
-            inactive_border = theme.surface0,
+            active_border = theme.blue,
+            inactive_border = theme.crust,
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -26,8 +26,8 @@ hl.config({
     },
 
     decoration = {
-        rounding = 10,
-        rounding_power = 2,
+        rounding = 0,
+        rounding_power = 0,
 
         -- Change transparency of focused and unfocused windows
         active_opacity = 1.0,

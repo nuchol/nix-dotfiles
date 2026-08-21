@@ -19,15 +19,18 @@ in
     (programs + /hyprland.nix)
     (programs + /nvim.nix)
     (programs + /kitty.nix)
+    (programs + /minecraft.nix)
   ];
 
   modules = {
+    languages.enable = true;
     zsh.enable = true;
     oh-my-posh.enable = true;
     git.enable = true;
     hyprland.enable = true;
     nvim.enable = true;
     kitty.enable = true;
+    minecraft.enable = true;
   };
 
   home.username = "nick";
@@ -50,6 +53,9 @@ in
     fastfetch
     steam
     spotify
+    nautilus
+
+    opencode
 
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.otter-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -66,6 +72,6 @@ in
   home.sessionVariables = {
     XCURSOR_THEME = "Breeze_Surfaces";
     HYPRCURSOR_THEME = "Breeze_Surfaces";
+    NIX_SHELL_PRESERVE_PROMPT = "1";
   };
-
 }
