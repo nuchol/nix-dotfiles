@@ -46,13 +46,6 @@
 
   # Boot
   boot.loader = {
-    # grub = {
-    #   enable = true;
-    #   device = "nodev";
-    #   efiSupport = true;
-    #   useOSProber = true;
-    # };
-
     limine = {
       enable = true;
       secureBoot.enable = true;

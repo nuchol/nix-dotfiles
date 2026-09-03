@@ -6,13 +6,13 @@
 local important = { "kitty", "brave-browser" }
 local secondary = { "discord", "spotify" }
 
-hl.window_rule({
-    name  = "unimportant",
-    match = { class = ".*" },
-    float = true,
-    center = true,
-    size = {"(monitor_w * 0.75)", "(monitor_h * 0.75)"},
-})
+-- hl.window_rule({
+--     name  = "unimportant",
+--     match = { class = ".*" },
+--     float = true,
+--     center = true,
+--     size = {"(monitor_w * 0.75)", "(monitor_h * 0.75)"},
+-- })
 
 for _, name in ipairs(important) do
     hl.window_rule({
@@ -33,6 +33,8 @@ for _, name in ipairs(secondary) do
         size = {"(monitor_w * 0.75)", "(monitor_h * 0.75)"},
     })
 end
+
+hl.workspace_rule({ workspace = "special:magic", layout = "scrolling" })
 
 hl.window_rule({
     -- Ignore maximize requests from all apps.
@@ -62,7 +64,6 @@ hl.on("config.reloaded", function()
     hl.notification.create({ text = "Hyprland config reloaded", timeout = 5000, icon = "ok" })
 end)
 
--- TODO
 -- hl.on("window.fullscreen", function(w)
 --     if w.class ~= "kitty" then return end
 --

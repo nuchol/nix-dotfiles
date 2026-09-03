@@ -12,10 +12,12 @@ let
 in 
 {
   imports = [
+    # inputs.catppuccin.homeModules.catppuccin
     (programs + /languages.nix)
     (programs + /zsh.nix)
     (programs + /oh-my-posh.nix)
     (programs + /git.nix)
+    # (programs + /theme.nix)
     (programs + /hyprland.nix)
     (programs + /nvim.nix)
     (programs + /kitty.nix)
@@ -27,7 +29,8 @@ in
     zsh.enable = true;
     oh-my-posh.enable = true;
     git.enable = true;
-    hyprland.enable = true;
+    # hyprland.enable = true;
+    # theme.enable = true;
     nvim.enable = true;
     kitty.enable = true;
     minecraft.enable = true;
@@ -44,8 +47,9 @@ in
   }) configs;
 
   services.playerctld.enable = true;
-  
+
   home.packages = with pkgs; [
+    gtk3 gtk4
     socat jq pulseaudio
 
     brave
@@ -65,13 +69,13 @@ in
     gtk.enable = true;
     x11.enable = true;
     package = pkgs.kdePackages.breeze;
-    name = "Breeze_Surfaces";
+    name = "breeze_cursors";
     size = 24;
   };
 
   home.sessionVariables = {
-    XCURSOR_THEME = "Breeze_Surfaces";
-    HYPRCURSOR_THEME = "Breeze_Surfaces";
+    XCURSOR_THEME = "breeze_cursors";
+    HYPRCURSOR_THEME = "breeze_cursors";
     NIX_SHELL_PRESERVE_PROMPT = "1";
   };
 }
